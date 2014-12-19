@@ -249,8 +249,7 @@ def match(request):
         if form.is_valid():
 
             # Filter by skills.
-            persons = Person.objects.filter(airport__isnull=False, task__role__name='instructor')\
-                                    .annotate(num_taught=Count('task'))
+            persons = Person.objects.filter(airport__isnull=False)
             skills = []
             for s in Skill.objects.all():
                 if form.cleaned_data[s.name]:

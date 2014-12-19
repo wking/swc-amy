@@ -1,6 +1,8 @@
 {% extends "workshops/_page.html" %}
 
 {% load breadcrumbs %}
+{% load task_count from workshops_person %}
+
 {% block breadcrumbs %}
     {% breadcrumb_url 'Index' 'index'  %}
     {% breadcrumb_active 'Instructor Search'  %}
@@ -28,7 +30,7 @@
 	</tr>
     {% for p in persons %}
         <tr>
-	    <td>{{ p.num_taught }}</td>
+	    <td>{{ p | task_count:"instructor" }}</td>
 	    <td><a href="{% url 'airport_details' p.airport.iata %}">{{ p.airport }}</a></td>
 	    <td>{{ p.personal }}</td>
 	    <td>{{ p.middle }}</td>
